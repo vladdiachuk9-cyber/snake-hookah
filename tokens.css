@@ -1,0 +1,79 @@
+/* Snake Hookah — design tokens */
+/* Джерело: SNAKE_DESIGN.md. Не редагувати тут — правити там. */
+
+:root {
+  /* Основа — з бренд-зображень */
+  --ink:        #0E0E10;  /* фон сторінки. темніше за все, що є на фото */
+  --ink-2:      #141416;  /* картки, панелі */
+  --ink-3:      #1A1A1D;  /* ховер поверх ink-2 */
+  --line:       #26262A;  /* рамки, роздільники */
+  --line-soft:  #1E1E21;  /* рядки таблиць */
+
+  /* Текст */
+  --text:       #E8E6E3;  /* заголовки */
+  --text-body:  #B8B5B1;  /* основний */
+  --text-mute:  #6F6D6A;  /* підписи, крихти, лейбли */
+
+  /* Акцент */
+  --gold:       #C9A961;  /* CTA, ціна, активний стан */
+  --gold-hi:    #DCBC73;  /* ховер */
+  --gold-dim:   #8A7442;  /* disabled, рамка */
+
+  /* Змія — з ілюстрацій */
+  --snake:      #2B2B2B;  /* тіло, темна частина */
+  --snake-hi:   #4A4A4A;  /* блік на лусці */
+  --snake-bg:   #595959;  /* сірий фон #1 */
+
+  /* Колекції — фони бренд-зображень */
+  --c-forest:   #2A3C3C;  /* хвойний. Walnut Green, Wild Green Croc */
+  --c-stone:    #BFB9B9;  /* світлий камінь. Walnut White */
+  --c-brick:    #743621;  /* теракота. Wild Cognac Ostrich, Sucupira Cognac */
+  --c-coffee:   #8B694E;  /* кава. Sucupira Brown, Tigerwood */
+  --c-navy:     #2E3A4E;  /* Wild Blue Crocodile */
+  --c-wine:     #4A2230;  /* Walnut Purple */
+
+  /* Фони секцій — з бренд-ілюстрацій. Чергувати з --ink, не 2 поспіль */
+  --sec-graphite: #595959;  /* текст: --text  · акцент: --text (не gold) */
+  --sec-forest:   #2A3C3C;  /* текст: --text  · акцент: --gold */
+  --sec-stone:    #BFB9B9;  /* текст: --ink   · ЄДИНИЙ світлий фон */
+  --sec-brick:    #743621;  /* текст: --text  · акцент: #E8C87A */
+  --sec-coffee:   #523C2A;  /* текст: --text  · акцент: --gold */
+                            /* затемнено з #8B694E — оригінал провалює WCAG */
+
+  /* Статуси */
+  --ok:         #5FB87A;  /* в наявності */
+  --warn:       #C9A961;  /* під замовлення — той самий gold */
+  --err:        #C0504D;  /* немає */
+
+  /* Типографіка */
+  --font-body:  'Inter', -apple-system, 'Segoe UI', sans-serif;
+  --font-num:   'Inter', monospace;      /* ціни, ТТН, артикули — tabular-nums */
+
+  --t-hero:     clamp(32px, 5vw, 48px);
+  --t-h1:       clamp(26px, 3.4vw, 34px);
+  --t-h2:       27px;
+  --t-h3:       19px;
+  --t-body:     16px;
+  --t-sm:       14px;
+  --t-xs:       13px;
+  --t-label:    11px;  /* + letter-spacing .14em, uppercase */
+
+  /* Ритм */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 90px;
+
+  --r-sm: 3px;   /* бейдж */
+  --r-md: 8px;   /* кнопка, зображення */
+  --r-lg: 12px;  /* картка */
+  --r-pill: 100px;
+
+  --wrap-narrow: 820px;   /* текстові сторінки */
+  --wrap:        1180px;  /* каталог, картка товару */
+
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --fast: .18s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

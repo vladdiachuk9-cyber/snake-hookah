@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Expose the most-used tokens as Tailwind utilities (bg-ink, text-gold, …)
+   while every value still resolves through the CSS variables above — single
+   source of truth stays tokens.css. Anything not listed here is still
+   reachable via arbitrary values, e.g. p-[var(--s-5)]. */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-text: var(--text);
+  --color-text-body: var(--text-body);
+  --color-text-mute: var(--text-mute);
+  --color-gold: var(--gold);
+  --color-gold-hi: var(--gold-hi);
+  --color-gold-dim: var(--gold-dim);
+  --color-ok: var(--ok);
+  --color-err: var(--err);
+  --font-sans: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ink);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* ---- Shared components, ported from SNAKE_DESIGN.md ---- */
+
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--s-5);
+}
+
+.wrap-narrow {
+  max-width: var(--wrap-narrow);
+  margin-inline: auto;
+  padding-inline: var(--s-5);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: 15px 22px;
+  border-radius: var(--r-md);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--fast);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+}
+.btn-primary:hover {
+  background: var(--gold-hi);
+}
+.btn-primary:disabled {
+  background: var(--gold-dim);
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid #3a3a3f;
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.price {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.price small {
+  font-size: var(--t-sm);
+  color: var(--text-mute);
+  font-weight: 400;
+  margin-left: var(--s-2);
+}
+
+.badge {
+  display: inline-block;
+  font-size: var(--t-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+}
+
+.stock {
+  font-size: var(--t-xs);
+  color: var(--ok);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.stock::before {
+  content: "●";
+}
+.stock--out {
+  color: var(--err);
+}
+
+.gallery {
+  background: linear-gradient(160deg, var(--ink-3), #121214);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-5);
+}
+.gallery img {
+  border-radius: var(--r-md);
+  background: #fff;
+}

@@ -1,0 +1,7 @@
+# Raw source material — huge, already extracted/processed into site/public.
+# Keep these files locally, just don't version them.
+drive-download-*.zip
+files.zip
+
+# Claude Code local session state
+.claude/

@@ -1,0 +1,79 @@
+/* Snake Hookah — design tokens */
+/* Mirrors ../../SNAKE_DESIGN.md and ../../tokens.css. Edit the source of truth
+   at repo root first, then copy changes here. */
+
+:root {
+  /* Основа — з бренд-зображень */
+  --ink:        #0E0E10;  /* фон сторінки. темніше за все, що є на фото */
+  --ink-2:      #141416;  /* картки, панелі */
+  --ink-3:      #1A1A1D;  /* ховер поверх ink-2 */
+  --line:       #26262A;  /* рамки, роздільники */
+  --line-soft:  #1E1E21;  /* рядки таблиць */
+
+  /* Текст */
+  --text:       #E8E6E3;  /* заголовки */
+  --text-body:  #B8B5B1;  /* основний */
+  --text-mute:  #6F6D6A;  /* підписи, крихти, лейбли */
+
+  /* Акцент */
+  --gold:       #C9A961;  /* CTA, ціна, активний стан */
+  --gold-hi:    #DCBC73;  /* ховер */
+  --gold-dim:   #8A7442;  /* disabled, рамка */
+
+  /* Змія — з ілюстрацій */
+  --snake:      #2B2B2B;
+  --snake-hi:   #4A4A4A;
+  --snake-bg:   #595959;
+
+  /* Колекції — фони бренд-зображень */
+  --c-forest:   #2A3C3C;
+  --c-stone:    #BFB9B9;
+  --c-brick:    #743621;
+  --c-coffee:   #8B694E;
+  --c-navy:     #2E3A4E;
+  --c-wine:     #4A2230;
+
+  /* Фони секцій — з бренд-ілюстрацій. Чергувати з --ink, не 2 поспіль */
+  --sec-graphite: #595959;
+  --sec-forest:   #2A3C3C;
+  --sec-stone:    #BFB9B9;
+  --sec-brick:    #743621;
+  --sec-coffee:   #523C2A;
+
+  /* Статуси */
+  --ok:         #5FB87A;
+  --warn:       #C9A961;
+  --err:        #C0504D;
+
+  /* Типографіка */
+  --font-body:  var(--font-inter), -apple-system, 'Segoe UI', sans-serif;
+  --font-num:   var(--font-inter), monospace;
+
+  --t-hero:     clamp(32px, 5vw, 48px);
+  --t-h1:       clamp(26px, 3.4vw, 34px);
+  --t-h2:       27px;
+  --t-h3:       19px;
+  --t-body:     16px;
+  --t-sm:       14px;
+  --t-xs:       13px;
+  --t-label:    11px;
+
+  /* Ритм */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 90px;
+
+  --r-sm: 3px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-pill: 100px;
+
+  --wrap-narrow: 820px;
+  --wrap:        1180px;
+
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --fast: .18s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

@@ -20,7 +20,7 @@ export function Production({ locale, dict }: { locale: Locale; dict: Dictionary 
           <Reveal delay={0.05} style={{ borderTop: "1px solid var(--gold)", paddingTop: "var(--s-4)" }}>
             <h3 style={{ fontSize: "var(--t-h3)" }}>Spiral</h3>
             <p style={{ fontSize: "var(--t-sm)", color: "var(--text-body)", marginTop: "var(--s-2)" }}>
-              До 100 одиниць на місяць — наш реальний потолок, і ми не піднімаємо його штучно.
+              До 100 одиниць на місяць — наша реальна стеля, і ми не піднімаємо її штучно.
             </p>
           </Reveal>
           <Reveal delay={0.12} style={{ borderTop: "1px solid var(--gold)", paddingTop: "var(--s-4)" }}>

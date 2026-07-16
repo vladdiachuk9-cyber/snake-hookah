@@ -67,7 +67,7 @@ export default async function ProductionPage(props: PageProps<"/[locale]/product
           </Reveal>
           <Reveal delay={0.06} style={{ marginTop: "var(--s-5)" }}>
             <p style={{ color: "var(--text-body)" }}>
-              Spiral — до 100 одиниць на місяць. Це наш реальний потолок. Wild — значно довше: ручна обшивка не
+              Spiral — до 100 одиниць на місяць. Це наша реальна стеля. Wild — значно довше: ручна обшивка не
               масштабується, не можна взяти вдвічі більше людей і отримати вдвічі більше кальянів. Можна тільки
               отримати вдвічі більше нерівних швів.
             </p>
@@ -95,7 +95,7 @@ export default async function ProductionPage(props: PageProps<"/[locale]/product
           <Reveal delay={0.1}>
             <h4 style={{ color: "var(--text)", fontWeight: 600 }}>Шкіра</h4>
             <p style={{ fontSize: "var(--t-sm)", color: "var(--text-body)", marginTop: "var(--s-2)" }}>
-              Натуральна, не плівка з тисненням. Темніє й набуває патини з часом замість того, щоб облазити.
+              Натуральна, не плівка з тисненням. Темніє й набуває патини з часом замість того, щоб лущитися.
             </p>
           </Reveal>
           <Reveal delay={0.16}>

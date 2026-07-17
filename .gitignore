@@ -2,6 +2,7 @@
 # Keep these files locally, just don't version them.
 drive-download-*.zip
 files.zip
+каталог/
 
 # Claude Code local session state
 .claude/

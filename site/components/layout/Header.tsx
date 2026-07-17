@@ -61,7 +61,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
           <Link
             href={`/${locale}/wishlist`}
-            aria-label="wishlist"
+            aria-label={dict.catalog.wishlistTitle}
             className="relative hidden sm:flex items-center justify-center"
             style={{ width: 32, height: 32, color: "var(--text)" }}
           >

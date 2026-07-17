@@ -76,6 +76,7 @@ const ru: Dictionary = {
     checkout: "Оформить заказ",
     remove: "Убрать",
     continue: "Продолжить покупки",
+    close: "Закрыть",
   },
   order: {
     title: "Заявка на заказ",

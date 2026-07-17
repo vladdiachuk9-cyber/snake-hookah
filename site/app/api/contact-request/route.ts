@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isSpam } from "@/lib/honeypot";
+import { sendLeadEmail } from "@/lib/mail";
 
 interface ContactPayload {
   name: string;
@@ -20,8 +22,6 @@ function isValid(body: unknown): body is ContactPayload {
   );
 }
 
-// Same story as /api/order-request: no inbox/CRM wired up yet, just logs so
-// the message isn't lost. Swap for a real notification once one is chosen.
 export async function POST(request: NextRequest) {
   let body: unknown;
   try {
@@ -34,7 +34,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "invalid_payload" }, { status: 400 });
   }
 
+  if (isSpam(body)) {
+    return NextResponse.json({ ok: true });
+  }
+
   console.log("[contact-request]", JSON.stringify(body));
+
+  await sendLeadEmail("Нове повідомлення з форми контактів — Snake Hookah", {
+    "Ім'я": body.name,
+    Email: body.email,
+    Повідомлення: body.message,
+  });
 
   return NextResponse.json({ ok: true });
 }

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isSpam } from "@/lib/honeypot";
+import { sendLeadEmail } from "@/lib/mail";
 
 interface CartPayload {
   type: "cart";
@@ -33,9 +35,8 @@ function isValid(body: unknown): body is OrderPayload {
   return false;
 }
 
-// No payment provider or CRM is wired up yet — this just validates and logs
-// the request server-side so nothing is lost. Swap the console.log for a
-// real notification (email/Telegram bot/CRM webhook) once one is chosen.
+// No payment provider or CRM is wired up yet — an email is sent to the
+// business inbox on every valid submission (see lib/mail.ts).
 export async function POST(request: NextRequest) {
   let body: unknown;
   try {
@@ -48,7 +49,30 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "invalid_payload" }, { status: 400 });
   }
 
+  if (isSpam(body)) {
+    return NextResponse.json({ ok: true });
+  }
+
   console.log("[order-request]", JSON.stringify(body));
+
+  if (body.type === "cart") {
+    const itemsSummary = body.items.map((i) => `${i.qty} × ${i.name} (${i.priceUah} ₴)`).join("; ");
+    await sendLeadEmail("Нове замовлення — Snake Hookah", {
+      "Ім'я": body.name,
+      Телефон: body.phone,
+      Email: body.email,
+      Товари: itemsSummary,
+      Коментар: body.comment,
+    });
+  } else {
+    await sendLeadEmail("Заявка на оптову ціну — Snake Hookah", {
+      "Ім'я": body.name,
+      Телефон: body.phone,
+      Товар: body.product,
+      Компанія: body.company,
+      Коментар: body.comment,
+    });
+  }
 
   return NextResponse.json({ ok: true });
 }

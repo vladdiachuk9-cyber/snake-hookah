@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import type { Dictionary } from "@/lib/dictionaries/ua";
+import { Honeypot } from "@/components/ui/Honeypot";
+import { HONEYPOT_FIELD } from "@/lib/honeypot";
 
 export function B2BForm({ dict }: { dict: Dictionary }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
@@ -20,6 +22,7 @@ export function B2BForm({ dict }: { dict: Dictionary }) {
           company: form.get("company"),
           volume: form.get("volume"),
           comment: form.get("comment"),
+          [HONEYPOT_FIELD]: form.get(HONEYPOT_FIELD),
         }),
       });
       setStatus(res.ok ? "done" : "error");
@@ -34,6 +37,7 @@ export function B2BForm({ dict }: { dict: Dictionary }) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: "var(--s-4)" }}>
+      <Honeypot />
       <p style={{ fontSize: "var(--t-sm)", color: "var(--text-body)" }}>{dict.b2b.formIntro}</p>
       <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "var(--s-4)" }}>
         <Field name="name" label={dict.order.name} required />

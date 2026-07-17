@@ -39,7 +39,7 @@ export function CartDrawer({ locale, dict }: { locale: Locale; dict: Dictionary 
           >
             <div className="flex items-center justify-between" style={{ padding: "var(--s-5)", borderBottom: "1px solid var(--line)" }}>
               <h2 style={{ fontSize: "var(--t-h3)" }}>{dict.cart.title}</h2>
-              <button type="button" onClick={close} aria-label="close" style={{ color: "var(--text-mute)" }}>
+              <button type="button" onClick={close} aria-label={dict.cart.close} style={{ color: "var(--text-mute)" }}>
                 ✕
               </button>
             </div>

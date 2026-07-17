@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import type { Dictionary } from "@/lib/dictionaries/ua";
+import { Honeypot } from "@/components/ui/Honeypot";
+import { HONEYPOT_FIELD } from "@/lib/honeypot";
 
 export function ContactForm({ dict }: { dict: Dictionary }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
@@ -18,6 +20,7 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
           name: form.get("name"),
           email: form.get("email"),
           message: form.get("message"),
+          [HONEYPOT_FIELD]: form.get(HONEYPOT_FIELD),
         }),
       });
       setStatus(res.ok ? "done" : "error");
@@ -32,6 +35,7 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: "var(--s-4)" }}>
+      <Honeypot />
       <Field name="name" label={dict.order.name} required />
       <Field name="email" label={dict.order.email} required type="email" />
       <TextArea name="message" label={dict.order.comment} required />

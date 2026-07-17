@@ -8,6 +8,8 @@ import type { Dictionary } from "@/lib/dictionaries/ua";
 import { useCartStore, cartTotals } from "@/lib/cart-store";
 import { useHydratedCartItems } from "@/lib/use-cart-items";
 import { formatUah } from "@/lib/format";
+import { Honeypot } from "@/components/ui/Honeypot";
+import { HONEYPOT_FIELD } from "@/lib/honeypot";
 
 export function OrderClient({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const items = useHydratedCartItems();
@@ -30,6 +32,7 @@ export function OrderClient({ locale, dict }: { locale: Locale; dict: Dictionary
           email: form.get("email"),
           comment: form.get("comment"),
           items: items.map((i) => ({ sku: i.sku, name: i.name, qty: i.qty, priceUah: i.priceUah })),
+          [HONEYPOT_FIELD]: form.get(HONEYPOT_FIELD),
         }),
       });
       if (res.ok) {
@@ -97,6 +100,7 @@ export function OrderClient({ locale, dict }: { locale: Locale; dict: Dictionary
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: "var(--s-4)" }}>
+          <Honeypot />
           <Field name="name" label={dict.order.name} required />
           <Field name="phone" label={dict.order.phone} required type="tel" />
           <Field name="email" label={dict.order.email} type="email" />

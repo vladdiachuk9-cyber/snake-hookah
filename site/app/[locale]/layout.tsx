@@ -38,6 +38,11 @@ export async function generateMetadata(props: LayoutProps<"/[locale]">): Promise
       type: "website",
       siteName: "Snake Hookah",
       locale,
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Snake Hookah — кальяни ручної роботи" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/og-image.jpg"],
     },
     other: { "current-locale": locale },
   };
@@ -47,11 +52,20 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Snake Hookah",
+  url: BASE_URL,
+  logo: `${BASE_URL}/images/brand/logo-dark.webp`,
   foundingDate: "2020",
   address: { "@type": "PostalAddress", addressLocality: "Київ", addressCountry: "UA" },
   numberOfEmployees: { "@type": "QuantitativeValue", value: 10 },
   sameAs: ["https://www.instagram.com/snake.hookah"],
   description: "Українська майстерня кальянів ручної роботи. Київ, з 2020 року.",
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Snake Hookah",
+  url: BASE_URL,
 };
 
 export default async function LocaleLayout(props: LayoutProps<"/[locale]">) {
@@ -63,6 +77,7 @@ export default async function LocaleLayout(props: LayoutProps<"/[locale]">) {
     <html lang={locale} className={`${inter.variable} h-full`}>
       <body className="min-h-full flex flex-col">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
         <SmoothScroll>
           <Header locale={locale} dict={dict} />
           <main className="flex-1">{props.children}</main>

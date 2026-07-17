@@ -77,6 +77,7 @@ const en: Dictionary = {
     checkout: "Checkout",
     remove: "Remove",
     continue: "Continue shopping",
+    close: "Close",
   },
   order: {
     title: "Order request",

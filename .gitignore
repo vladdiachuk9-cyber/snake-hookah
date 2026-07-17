@@ -5,3 +5,6 @@ files.zip
 
 # Claude Code local session state
 .claude/
+
+# Reference skill packages — local tooling reference, not site content
+Skill/

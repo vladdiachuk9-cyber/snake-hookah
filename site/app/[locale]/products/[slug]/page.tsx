@@ -16,13 +16,24 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(props: PageProps<"/[locale]/products/[slug]">): Promise<Metadata> {
-  const { slug } = await props.params;
+  const { locale, slug } = await props.params;
   const product = getProductBySlug(slug);
   if (!product) return {};
   return {
     title: product.seoTitle,
     description: product.seoDescription,
-    alternates: { canonical: `/products/${product.slug}` },
+    alternates: { canonical: `/${locale}/products/${product.slug}` },
+    openGraph: {
+      title: product.seoTitle,
+      description: product.seoDescription,
+      images: product.images[0]
+        ? [{ url: product.images[0].src, width: 1400, height: 2100, alt: product.name }, { url: "/og-image.jpg", width: 1200, height: 630, alt: "Snake Hookah" }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: product.images[0] ? [product.images[0].src] : ["/og-image.jpg"],
+    },
   };
 }
 

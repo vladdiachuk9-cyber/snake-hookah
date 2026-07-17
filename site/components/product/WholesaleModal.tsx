@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { Dictionary } from "@/lib/dictionaries/ua";
+import { Honeypot } from "@/components/ui/Honeypot";
+import { HONEYPOT_FIELD } from "@/lib/honeypot";
 
 export function WholesaleModal({
   productName,
@@ -30,6 +32,7 @@ export function WholesaleModal({
           phone: form.get("phone"),
           company: form.get("company"),
           comment: form.get("comment"),
+          [HONEYPOT_FIELD]: form.get(HONEYPOT_FIELD),
         }),
       });
       setStatus(res.ok ? "done" : "error");
@@ -62,13 +65,14 @@ export function WholesaleModal({
             <h3 style={{ fontSize: "var(--t-h3)" }}>{dict.order.wholesaleTitle}</h3>
             <p style={{ fontSize: "var(--t-xs)", color: "var(--text-mute)", marginTop: 4 }}>{productName}</p>
           </div>
-          <button type="button" onClick={onClose} aria-label="close" style={{ color: "var(--text-mute)" }}>✕</button>
+          <button type="button" onClick={onClose} aria-label={dict.cart.close} style={{ color: "var(--text-mute)" }}>✕</button>
         </div>
 
         {status === "done" ? (
           <p style={{ color: "var(--ok)", fontSize: "var(--t-sm)" }}>{dict.order.success}</p>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: "var(--s-3)" }}>
+            <Honeypot />
             <p style={{ fontSize: "var(--t-sm)", color: "var(--text-body)" }}>{dict.order.wholesaleIntro}</p>
             <Field name="name" label={dict.order.name} required />
             <Field name="phone" label={dict.order.phone} required type="tel" />

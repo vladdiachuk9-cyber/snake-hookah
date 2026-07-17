@@ -1,26 +1,8 @@
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import { Reveal } from "@/components/ui/Reveal";
 
-const items = [
-  {
-    title: "Тяга важливіша за все",
-    body: "Шахта Ø 16 мм — діаметр, при якому затяжка не потребує зусиль, а дим встигає охолонути. Ми пробували вужче й ширше. Зупинилися тут.",
-  },
-  {
-    title: "Дерево не накладка",
-    body: "Спіраль вирізається з цільного масиву й обіймає сталевий стовбур. Вона не відклеїться, бо її нема чим клеїти.",
-  },
-  {
-    title: "Шкіра має бути шкірою",
-    body: "Не плівка з тисненням «під крокодила». Справжня шкіра темніє, набуває патини, стає цікавішою через рік.",
-  },
-  {
-    title: "Чаша — це особисте",
-    body: "Ми не кладемо її в комплект. У кожного, хто курить серйозно, вже є своя — під свою забивку, свій тютюн.",
-  },
-];
-
 export function Advantages({ dict }: { dict: Dictionary }) {
+  const items = dict.home.advantagesItems;
   return (
     <section style={{ background: "var(--sec-forest)", paddingBlock: "var(--s-9)" }}>
       <div className="wrap">

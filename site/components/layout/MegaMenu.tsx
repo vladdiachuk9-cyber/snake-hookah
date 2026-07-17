@@ -3,11 +3,13 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import { products } from "@/lib/data/products";
+import { localizeProducts } from "@/lib/data/products-i18n";
 
 export function MegaMenu({ locale, dict }: { locale: Locale; dict: Dictionary }) {
-  const spiral = products.filter((p) => p.line === "Spiral");
-  const wild = products.filter((p) => p.line === "Wild Collection");
-  const featured = products.find((p) => p.slug === "kalyan-snake-hookah-spiral-walnut-green")!;
+  const localized = localizeProducts(products, locale);
+  const spiral = localized.filter((p) => p.line === "Spiral");
+  const wild = localized.filter((p) => p.line === "Wild Collection");
+  const featured = localized.find((p) => p.slug === "kalyan-snake-hookah-spiral-walnut-green")!;
 
   return (
     <div

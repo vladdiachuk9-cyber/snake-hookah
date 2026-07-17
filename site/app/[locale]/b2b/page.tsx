@@ -7,7 +7,8 @@ import { B2BForm } from "@/components/pages/B2BForm";
 
 export async function generateMetadata(props: PageProps<"/[locale]/b2b">): Promise<Metadata> {
   const { locale } = await props.params;
-  return { title: "Дилерам", alternates: { canonical: `/${locale}/b2b` } };
+  const dict = await getDictionary(isLocale(locale) ? locale : "ua");
+  return { title: dict.b2b.metaTitle, alternates: { canonical: `/${locale}/b2b` } };
 }
 
 export default async function B2BPage(props: PageProps<"/[locale]/b2b">) {

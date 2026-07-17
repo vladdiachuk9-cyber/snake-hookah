@@ -31,12 +31,12 @@ export function CompareClient({ products, locale, dict }: { products: Product[];
 
   const rows: { label: string; value: (p: Product) => string }[] = [
     { label: dict.product.line, value: (p) => p.line },
-    { label: dict.product.height, value: (p) => `${p.heightCm} см` },
+    { label: dict.product.height, value: (p) => `${p.heightCm} ${dict.product.unitCm}` },
     { label: dict.product.shaft, value: (p) => p.shaft },
     { label: dict.product.wood, value: (p) => p.wood ?? "—" },
     { label: dict.product.finish, value: (p) => p.finish },
     { label: dict.product.hose, value: (p) => p.hose },
-    { label: dict.product.weight, value: (p) => `${p.weightKg} кг` },
+    { label: dict.product.weight, value: (p) => `${p.weightKg} ${dict.product.unitKg}` },
     { label: dict.product.sku, value: (p) => p.sku },
   ];
 

@@ -3,14 +3,8 @@ import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import { Reveal } from "@/components/ui/Reveal";
 
-const stats = [
-  { value: "2020", label: "рік заснування" },
-  { value: "10", label: "людей у майстерні" },
-  { value: "~1000", label: "кальянів зроблено" },
-  { value: "4", label: "країни експорту" },
-];
-
 export function AboutSnippet({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  const stats = dict.home.stats;
   return (
     <section id="about" style={{ paddingBlock: "var(--s-9)" }}>
       <div className="wrap grid grid-cols-1 lg:grid-cols-2" style={{ gap: "var(--s-8)" }}>

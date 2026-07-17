@@ -7,19 +7,21 @@ import { AnimatePresence, motion } from "motion/react";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import { products } from "@/lib/data/products";
+import { localizeProducts } from "@/lib/data/products-i18n";
 import { formatUah } from "@/lib/format";
 
 export function QuickSearch({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const localized = useMemo(() => localizeProducts(products, locale), [locale]);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (q.length === 0) return [];
-    return products
+    return localized
       .filter((p) => p.name.toLowerCase().includes(q) || (p.wood ?? "").toLowerCase().includes(q) || p.finish.toLowerCase().includes(q))
       .slice(0, 6);
-  }, [query]);
+  }, [query, localized]);
 
   function close() {
     setOpen(false);

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/get-dictionary";
 import { getProductBySlug, products, getRelatedProducts } from "@/lib/data/products";
+import { localizeProduct, localizeProducts } from "@/lib/data/products-i18n";
 import { formatUah, formatUsd } from "@/lib/format";
 import { Gallery } from "@/components/product/Gallery";
 import { AddToCart } from "@/components/product/AddToCart";
@@ -17,8 +18,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata(props: PageProps<"/[locale]/products/[slug]">): Promise<Metadata> {
   const { locale, slug } = await props.params;
-  const product = getProductBySlug(slug);
-  if (!product) return {};
+  const rawProduct = getProductBySlug(slug);
+  if (!rawProduct) return {};
+  const product = localizeProduct(rawProduct, isLocale(locale) ? locale : "ua");
   return {
     title: product.seoTitle,
     description: product.seoDescription,
@@ -41,11 +43,12 @@ export default async function ProductPage(props: PageProps<"/[locale]/products/[
   const { locale, slug } = await props.params;
   if (!isLocale(locale)) notFound();
 
-  const product = getProductBySlug(slug);
-  if (!product) notFound();
+  const rawProduct = getProductBySlug(slug);
+  if (!rawProduct) notFound();
+  const product = localizeProduct(rawProduct, locale);
 
   const dict = await getDictionary(locale);
-  const related = getRelatedProducts(product);
+  const related = localizeProducts(getRelatedProducts(rawProduct), locale);
 
   const jsonLd = {
     "@context": "https://schema.org",

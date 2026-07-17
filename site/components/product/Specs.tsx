@@ -5,12 +5,12 @@ export function Specs({ product, dict }: { product: Product; dict: Dictionary })
   const rows: [string, string][] = [
     [dict.product.sku, product.sku],
     [dict.product.line, product.line],
-    [dict.product.height, `${product.heightCm} см`],
+    [dict.product.height, `${product.heightCm} ${dict.product.unitCm}`],
     [dict.product.shaft, product.shaft],
     ...(product.wood ? ([[dict.product.wood, product.wood]] as [string, string][]) : []),
     [dict.product.finish, product.finish],
     [dict.product.hose, product.hose],
-    [dict.product.weight, `${product.weightKg} кг`],
+    [dict.product.weight, `${product.weightKg} ${dict.product.unitKg}`],
     [dict.product.countryOfOrigin, product.countryOfOrigin],
     [dict.product.warranty, dict.product.warrantyValue],
   ];

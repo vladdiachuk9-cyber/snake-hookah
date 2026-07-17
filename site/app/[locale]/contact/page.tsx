@@ -7,7 +7,8 @@ import { ContactForm } from "@/components/pages/ContactForm";
 
 export async function generateMetadata(props: PageProps<"/[locale]/contact">): Promise<Metadata> {
   const { locale } = await props.params;
-  return { title: "Контакти", alternates: { canonical: `/${locale}/contact` } };
+  const dict = await getDictionary(isLocale(locale) ? locale : "ua");
+  return { title: dict.contact.metaTitle, alternates: { canonical: `/${locale}/contact` } };
 }
 
 export default async function ContactPage(props: PageProps<"/[locale]/contact">) {

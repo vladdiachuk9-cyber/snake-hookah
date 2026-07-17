@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import { products } from "@/lib/data/products";
+import { localizeProducts } from "@/lib/data/products-i18n";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -17,8 +18,9 @@ const FEATURED_SKUS = [
 ];
 
 export function PopularProducts({ locale, dict }: { locale: Locale; dict: Dictionary }) {
-  const shown = FEATURED_SKUS.map((sku) => products.find((p) => p.sku === sku)).filter(
-    (p): p is (typeof products)[number] => Boolean(p),
+  const localized = localizeProducts(products, locale);
+  const shown = FEATURED_SKUS.map((sku) => localized.find((p) => p.sku === sku)).filter(
+    (p): p is (typeof localized)[number] => Boolean(p),
   );
 
   return (

@@ -20,13 +20,13 @@ export function Production({ locale, dict }: { locale: Locale; dict: Dictionary 
           <Reveal delay={0.05} style={{ borderTop: "1px solid var(--gold)", paddingTop: "var(--s-4)" }}>
             <h3 style={{ fontSize: "var(--t-h3)" }}>Spiral</h3>
             <p style={{ fontSize: "var(--t-sm)", color: "var(--text-body)", marginTop: "var(--s-2)" }}>
-              До 100 одиниць на місяць — наша реальна стеля, і ми не піднімаємо її штучно.
+              {dict.home.productionSpiralNote}
             </p>
           </Reveal>
           <Reveal delay={0.12} style={{ borderTop: "1px solid var(--gold)", paddingTop: "var(--s-4)" }}>
             <h3 style={{ fontSize: "var(--t-h3)" }}>Wild Collection</h3>
             <p style={{ fontSize: "var(--t-sm)", color: "var(--text-body)", marginTop: "var(--s-2)" }}>
-              Ручна обшивка не масштабується: не можна взяти вдвічі більше людей і отримати вдвічі більше кальянів.
+              {dict.home.productionWildNote}
             </p>
           </Reveal>
         </div>

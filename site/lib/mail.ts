@@ -22,7 +22,7 @@ export async function sendLeadEmail(subject: string, fields: Record<string, stri
   const resend = new Resend(apiKey);
   try {
     await resend.emails.send({
-      from: "Snake Hookah <onboarding@resend.dev>",
+      from: "Snake Hookah <orders@snakehookah.com>",
       to: LEADS_EMAIL,
       subject,
       html: `<table style="font-family:sans-serif;font-size:14px;color:#111">${rows}</table>`,

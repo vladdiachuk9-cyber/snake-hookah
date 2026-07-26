@@ -8,51 +8,63 @@ import path from "node:path";
 const CATALOG_DIR = path.resolve(import.meta.dirname, "..", "..", "каталог");
 const PUBLIC_DIR = path.resolve(import.meta.dirname, "..", "public");
 
+// Every SKU's image 1 is a consistent "full coil, no bag" hero shot
+// wherever the source folder has one, so the catalog grid reads as one
+// system instead of a mix of macro/hero/pouch shots (caught after the
+// user flagged inconsistent primary photos across the grid).
 const jobs = [
   // Leather Hose — smooth genuine leather, contrast top-stitching.
   { dir: "Шкіряний Шланг Зелений", src: "Photo-10.JPEG", out: "images/accessories/snake-hookah-leather-hose-green/1.webp", width: 1200 },
-  { dir: "Шкіряний Шланг Зелений", src: "Photo-11.JPEG", out: "images/accessories/snake-hookah-leather-hose-green/2.webp", width: 1200 },
-  { dir: "Шкіряний Шланг Зелений", src: "Photo-29.JPEG", out: "images/accessories/snake-hookah-leather-hose-green/3.webp", width: 1200 },
+  { dir: "Шкіряний Шланг Зелений", src: "Photo-29.JPEG", out: "images/accessories/snake-hookah-leather-hose-green/2.webp", width: 1200 },
+  { dir: "Шкіряний Шланг Зелений", src: "Photo-11.JPEG", out: "images/accessories/snake-hookah-leather-hose-green/3.webp", width: 1200 },
 
-  { dir: "Шкіряний Шланг Коньячний", src: "Photo-12.JPEG", out: "images/accessories/snake-hookah-leather-hose-cognac/1.webp", width: 1200 },
+  { dir: "Шкіряний Шланг Коньячний", src: "Photo-8.JPEG", out: "images/accessories/snake-hookah-leather-hose-cognac/1.webp", width: 1200 },
   { dir: "Шкіряний Шланг Коньячний", src: "Photo-30.JPEG", out: "images/accessories/snake-hookah-leather-hose-cognac/2.webp", width: 1200 },
-  { dir: "Шкіряний Шланг Коньячний", src: "Photo-8.JPEG", out: "images/accessories/snake-hookah-leather-hose-cognac/3.webp", width: 1200 },
+  { dir: "Шкіряний Шланг Коньячний", src: "Photo-12.JPEG", out: "images/accessories/snake-hookah-leather-hose-cognac/3.webp", width: 1200 },
 
+  // No bag-free coil shot exists in this folder — IMG_1890 (coil+pouch) is
+  // the closest to the others' framing, still a full-coil hero, not a macro.
   { dir: "Шкіряний Шланг Синій", src: "IMG_1890.JPG", out: "images/accessories/snake-hookah-leather-hose-blue/1.webp", width: 1200 },
   { dir: "Шкіряний Шланг Синій", src: "IMG_1891.JPG", out: "images/accessories/snake-hookah-leather-hose-blue/2.webp", width: 1200 },
-  { dir: "Шкіряний Шланг Синій", src: "Photo-3.JPEG", out: "images/accessories/snake-hookah-leather-hose-blue/3.webp", width: 1200 },
+  // Photo-3.JPEG dropped from this folder — it's actually the embossed
+  // snake-scale texture (Snake Hose Blue), not this smooth-leather SKU;
+  // moved below to snake-hookah-snake-hose-blue.
 
-  { dir: "Шкіряний Шланг Чорний", src: "Photo-13.JPEG", out: "images/accessories/snake-hookah-leather-hose-black/1.webp", width: 1200 },
+  { dir: "Шкіряний Шланг Чорний", src: "Photo-9.JPEG", out: "images/accessories/snake-hookah-leather-hose-black/1.webp", width: 1200 },
   { dir: "Шкіряний Шланг Чорний", src: "Photo-28.JPEG", out: "images/accessories/snake-hookah-leather-hose-black/2.webp", width: 1200 },
-  { dir: "Шкіряний Шланг Чорний", src: "Photo-9.JPEG", out: "images/accessories/snake-hookah-leather-hose-black/3.webp", width: 1200 },
+  { dir: "Шкіряний Шланг Чорний", src: "Photo-13.JPEG", out: "images/accessories/snake-hookah-leather-hose-black/3.webp", width: 1200 },
 
   // Snake Hose — leather embossed with a snake-scale pattern.
-  { dir: "Шланг Змія Бордовий", src: "Photo-15.JPEG", out: "images/accessories/snake-hookah-snake-hose-burgundy/1.webp", width: 1200 },
+  { dir: "Шланг Змія Бордовий", src: "Photo-6.JPEG", out: "images/accessories/snake-hookah-snake-hose-burgundy/1.webp", width: 1200 },
   { dir: "Шланг Змія Бордовий", src: "Photo-24.JPEG", out: "images/accessories/snake-hookah-snake-hose-burgundy/2.webp", width: 1200 },
-  { dir: "Шланг Змія Бордовий", src: "Photo-6.JPEG", out: "images/accessories/snake-hookah-snake-hose-burgundy/3.webp", width: 1200 },
+  { dir: "Шланг Змія Бордовий", src: "Photo-15.JPEG", out: "images/accessories/snake-hookah-snake-hose-burgundy/3.webp", width: 1200 },
 
-  { dir: "Шланг Змія Золото", src: "Photo-18.JPEG", out: "images/accessories/snake-hookah-snake-hose-gold/1.webp", width: 1200 },
+  { dir: "Шланг Змія Золото", src: "Photo-7.JPEG", out: "images/accessories/snake-hookah-snake-hose-gold/1.webp", width: 1200 },
   { dir: "Шланг Змія Золото", src: "Photo-23.JPEG", out: "images/accessories/snake-hookah-snake-hose-gold/2.webp", width: 1200 },
-  { dir: "Шланг Змія Золото", src: "Photo-7.JPEG", out: "images/accessories/snake-hookah-snake-hose-gold/3.webp", width: 1200 },
+  { dir: "Шланг Змія Золото", src: "Photo-18.JPEG", out: "images/accessories/snake-hookah-snake-hose-gold/3.webp", width: 1200 },
 
-  { dir: "Шланг Змія Помаранчевий", src: "Photo-17.JPEG", out: "images/accessories/snake-hookah-snake-hose-orange/1.webp", width: 1200 },
-  { dir: "Шланг Змія Помаранчевий", src: "Photo-25.JPEG", out: "images/accessories/snake-hookah-snake-hose-orange/2.webp", width: 1200 },
-  { dir: "Шланг Змія Помаранчевий", src: "Photo-4.JPEG", out: "images/accessories/snake-hookah-snake-hose-orange/3.webp", width: 1200 },
+  { dir: "Шланг Змія Помаранчевий", src: "Photo-25.JPEG", out: "images/accessories/snake-hookah-snake-hose-orange/1.webp", width: 1200 },
+  { dir: "Шланг Змія Помаранчевий", src: "Photo-4.JPEG", out: "images/accessories/snake-hookah-snake-hose-orange/2.webp", width: 1200 },
+  { dir: "Шланг Змія Помаранчевий", src: "Photo-17.JPEG", out: "images/accessories/snake-hookah-snake-hose-orange/3.webp", width: 1200 },
 
   { dir: "Шланг Змія Рожевий", src: "Photo-1.JPEG", out: "images/accessories/snake-hookah-snake-hose-pink/1.webp", width: 1200 },
-  { dir: "Шланг Змія Рожевий", src: "Photo-19.JPEG", out: "images/accessories/snake-hookah-snake-hose-pink/2.webp", width: 1200 },
-  { dir: "Шланг Змія Рожевий", src: "Photo-22.JPEG", out: "images/accessories/snake-hookah-snake-hose-pink/3.webp", width: 1200 },
+  { dir: "Шланг Змія Рожевий", src: "Photo-22.JPEG", out: "images/accessories/snake-hookah-snake-hose-pink/2.webp", width: 1200 },
+  { dir: "Шланг Змія Рожевий", src: "Photo-19.JPEG", out: "images/accessories/snake-hookah-snake-hose-pink/3.webp", width: 1200 },
 
-  { dir: "Шланг Змія Синій", src: "Photo-14.JPEG", out: "images/accessories/snake-hookah-snake-hose-blue/1.webp", width: 1200 },
+  // Photo-3.JPEG recovered from the leather-hose-blue folder (see above) —
+  // it's a bag-free full coil, giving this SKU the same 3-shot pattern as
+  // every other Snake Hose color instead of starting on a macro shot.
+  { dir: "Шкіряний Шланг Синій", src: "Photo-3.JPEG", out: "images/accessories/snake-hookah-snake-hose-blue/1.webp", width: 1200 },
   { dir: "Шланг Змія Синій", src: "Photo-26.JPEG", out: "images/accessories/snake-hookah-snake-hose-blue/2.webp", width: 1200 },
+  { dir: "Шланг Змія Синій", src: "Photo-14.JPEG", out: "images/accessories/snake-hookah-snake-hose-blue/3.webp", width: 1200 },
 
   { dir: "Шланг Змія Темно Синій", src: "Photo-2.JPEG", out: "images/accessories/snake-hookah-snake-hose-navy/1.webp", width: 1200 },
-  { dir: "Шланг Змія Темно Синій", src: "Photo-20.JPEG", out: "images/accessories/snake-hookah-snake-hose-navy/2.webp", width: 1200 },
-  { dir: "Шланг Змія Темно Синій", src: "Photo-21.JPEG", out: "images/accessories/snake-hookah-snake-hose-navy/3.webp", width: 1200 },
+  { dir: "Шланг Змія Темно Синій", src: "Photo-21.JPEG", out: "images/accessories/snake-hookah-snake-hose-navy/2.webp", width: 1200 },
+  { dir: "Шланг Змія Темно Синій", src: "Photo-20.JPEG", out: "images/accessories/snake-hookah-snake-hose-navy/3.webp", width: 1200 },
 
-  { dir: "Шланг Змія Червоний", src: "Photo-16.JPEG", out: "images/accessories/snake-hookah-snake-hose-red/1.webp", width: 1200 },
+  { dir: "Шланг Змія Червоний", src: "Photo-5.JPEG", out: "images/accessories/snake-hookah-snake-hose-red/1.webp", width: 1200 },
   { dir: "Шланг Змія Червоний", src: "Photo-27.JPEG", out: "images/accessories/snake-hookah-snake-hose-red/2.webp", width: 1200 },
-  { dir: "Шланг Змія Червоний", src: "Photo-5.JPEG", out: "images/accessories/snake-hookah-snake-hose-red/3.webp", width: 1200 },
+  { dir: "Шланг Змія Червоний", src: "Photo-16.JPEG", out: "images/accessories/snake-hookah-snake-hose-red/3.webp", width: 1200 },
 ];
 
 for (const job of jobs) {

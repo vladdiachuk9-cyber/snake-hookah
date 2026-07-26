@@ -4,7 +4,6 @@ const ua = {
   nav: {
     home: "Головна",
     catalog: "Каталог",
-    accessories: "Шланги",
     about: "Про нас",
     production: "Виробництво",
     contact: "Контакти",
@@ -141,8 +140,8 @@ const ua = {
     title: "Каталог",
     metaTitle: "Каталог кальянів",
     compareMetaTitle: "Порівняння моделей",
-    kicker: "11 моделей · 2 лінійки",
-    lede: "Spiral — цільна дерев'яна спіраль на сталевій шахті. Wild Collection — компактний формат, повністю в шкірі.",
+    kicker: "22 позиції · 4 лінійки",
+    lede: "Spiral і Wild Collection — кальяни ручної роботи. Шкіряний шланг і Шланг Змія — фірмові аксесуари тієї ж якості.",
     searchPlaceholder: "Пошук за назвою чи породою…",
     allLines: "Усі лінійки",
     sortLabel: "Сортування",

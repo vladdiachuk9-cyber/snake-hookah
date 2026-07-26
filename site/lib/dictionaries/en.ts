@@ -7,7 +7,6 @@ const en: Dictionary = {
   nav: {
     home: "Home",
     catalog: "Catalog",
-    accessories: "Hoses",
     about: "About",
     production: "Production",
     contact: "Contact",
@@ -144,8 +143,8 @@ const en: Dictionary = {
     title: "Catalog",
     metaTitle: "Hookah catalog",
     compareMetaTitle: "Compare models",
-    kicker: "11 models · 2 lines",
-    lede: "Spiral — a solid wood spiral on a steel shaft. Wild Collection — a compact, fully leather-wrapped format.",
+    kicker: "22 items · 4 lines",
+    lede: "Spiral and Wild Collection — handmade hookahs. Leather Hose and Snake Hose — signature accessories of the same quality.",
     searchPlaceholder: "Search by name or wood…",
     allLines: "All lines",
     sortLabel: "Sort",

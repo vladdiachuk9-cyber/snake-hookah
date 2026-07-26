@@ -7,7 +7,7 @@ import { accessories } from "@/lib/data/accessories";
 // a deliberate placeholder (IANA reserved), not a guessed real domain.
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
 
-const STATIC_PATHS = ["", "/catalog", "/accessories", "/about", "/production", "/b2b", "/contact"];
+const STATIC_PATHS = ["", "/catalog", "/about", "/production", "/b2b", "/contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

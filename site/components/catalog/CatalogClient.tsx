@@ -4,62 +4,92 @@ import { useMemo, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import type { Product, ProductLine } from "@/lib/data/products";
+import type { Accessory, AccessoryCategory } from "@/lib/data/accessories";
 import { ProductCard } from "@/components/product/ProductCard";
+import { AccessoryCard } from "@/components/accessories/AccessoryCard";
 import { Reveal } from "@/components/ui/Reveal";
 
 type Sort = "default" | "price-asc" | "price-desc" | "name";
+type Category = ProductLine | AccessoryCategory | "all";
+
+type CatalogItem = { kind: "product"; data: Product } | { kind: "accessory"; data: Accessory };
 
 export function CatalogClient({
   products,
+  accessories,
   locale,
   dict,
 }: {
   products: Product[];
+  accessories: Accessory[];
   locale: Locale;
   dict: Dictionary;
 }) {
   const [query, setQuery] = useState("");
-  const [line, setLine] = useState<ProductLine | "all">("all");
+  const [category, setCategory] = useState<Category>("all");
   const [sort, setSort] = useState<Sort>("default");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = products.filter((p) => {
-      const matchesLine = line === "all" || p.line === line;
-      const matchesQuery =
-        q.length === 0 ||
-        p.name.toLowerCase().includes(q) ||
-        (p.wood ?? "").toLowerCase().includes(q) ||
-        p.finish.toLowerCase().includes(q);
-      return matchesLine && matchesQuery;
-    });
 
-    list = [...list];
-    if (sort === "price-asc") list.sort((a, b) => a.priceUah - b.priceUah);
-    if (sort === "price-desc") list.sort((a, b) => b.priceUah - a.priceUah);
-    if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
-    // "default": photographed products first, keep catalog order otherwise
-    if (sort === "default") list.sort((a, b) => Number(b.images.length > 0) - Number(a.images.length > 0));
+    const matchedProducts: CatalogItem[] =
+      category === "Leather Hose" || category === "Snake Hose"
+        ? []
+        : products
+            .filter((p) => category === "all" || p.line === category)
+            .filter((p) => {
+              if (q.length === 0) return true;
+              return (
+                p.name.toLowerCase().includes(q) ||
+                (p.wood ?? "").toLowerCase().includes(q) ||
+                p.finish.toLowerCase().includes(q)
+              );
+            })
+            .map((data) => ({ kind: "product" as const, data }));
+
+    const matchedAccessories: CatalogItem[] =
+      category === "Spiral" || category === "Wild Collection"
+        ? []
+        : accessories
+            .filter((a) => category === "all" || a.category === category)
+            .filter((a) => q.length === 0 || a.color.toLowerCase().includes(q))
+            .map((data) => ({ kind: "accessory" as const, data }));
+
+    const list = [...matchedProducts, ...matchedAccessories];
+
+    if (sort === "price-asc") list.sort((a, b) => a.data.priceUah - b.data.priceUah);
+    if (sort === "price-desc") list.sort((a, b) => b.data.priceUah - a.data.priceUah);
+    if (sort === "name") list.sort((a, b) => a.data.name.localeCompare(b.data.name));
+    if (sort === "default")
+      list.sort((a, b) => Number(b.data.images.length > 0) - Number(a.data.images.length > 0));
 
     return list;
-  }, [products, query, line, sort]);
+  }, [products, accessories, query, category, sort]);
 
-  const hasFilters = query.trim().length > 0 || line !== "all";
+  const hasFilters = query.trim().length > 0 || category !== "all";
+
+  const categories: Category[] = ["all", "Spiral", "Wild Collection", "Leather Hose", "Snake Hose"];
+  const categoryLabel = (c: Category) => {
+    if (c === "all") return dict.catalog.allLines;
+    if (c === "Leather Hose") return dict.accessories.categoryLeather;
+    if (c === "Snake Hose") return dict.accessories.categorySnake;
+    return c;
+  };
 
   return (
     <div>
       <div className="flex flex-wrap items-end justify-between" style={{ gap: "var(--s-5)", marginBottom: "var(--s-7)" }}>
         <div className="flex flex-wrap items-center" style={{ gap: "var(--s-4)" }}>
-          <div className="flex" style={{ gap: 6 }}>
-            {(["all", "Spiral", "Wild Collection"] as const).map((l) => (
+          <div className="flex flex-wrap" style={{ gap: 6 }}>
+            {categories.map((c) => (
               <button
-                key={l}
+                key={c}
                 type="button"
-                onClick={() => setLine(l)}
-                className={l === line ? "btn-primary" : "btn-secondary"}
+                onClick={() => setCategory(c)}
+                className={c === category ? "btn-primary" : "btn-secondary"}
                 style={{ padding: "8px 16px", fontSize: "var(--t-xs)" }}
               >
-                {l === "all" ? dict.catalog.allLines : l}
+                {categoryLabel(c)}
               </button>
             ))}
           </div>
@@ -114,7 +144,7 @@ export function CatalogClient({
               type="button"
               onClick={() => {
                 setQuery("");
-                setLine("all");
+                setCategory("all");
               }}
               className="btn btn-secondary"
             >
@@ -124,15 +154,19 @@ export function CatalogClient({
         </div>
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: "var(--s-6)" }}>
-          {filtered.map((product, i) => (
-            <Reveal key={product.sku} delay={(i % 4) * 0.06}>
-              <ProductCard
-                product={product}
-                locale={locale}
-                soonLabel={dict.product.soon}
-                viewLabel={dict.product.viewProduct}
-                compareLabel={dict.product.compare}
-              />
+          {filtered.map((item, i) => (
+            <Reveal key={item.data.sku} delay={(i % 4) * 0.06}>
+              {item.kind === "product" ? (
+                <ProductCard
+                  product={item.data}
+                  locale={locale}
+                  soonLabel={dict.product.soon}
+                  viewLabel={dict.product.viewProduct}
+                  compareLabel={dict.product.compare}
+                />
+              ) : (
+                <AccessoryCard accessory={item.data} locale={locale} dict={dict} />
+              )}
             </Reveal>
           ))}
         </div>

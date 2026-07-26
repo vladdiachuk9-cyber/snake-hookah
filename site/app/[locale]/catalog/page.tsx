@@ -4,6 +4,8 @@ import { isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/get-dictionary";
 import { products } from "@/lib/data/products";
 import { localizeProducts } from "@/lib/data/products-i18n";
+import { accessories } from "@/lib/data/accessories";
+import { localizeAccessories } from "@/lib/data/accessories-i18n";
 import { CatalogClient } from "@/components/catalog/CatalogClient";
 import { CompareBar } from "@/components/catalog/CompareBar";
 
@@ -29,7 +31,12 @@ export default async function CatalogPage(props: PageProps<"/[locale]/catalog">)
         {dict.catalog.lede}
       </p>
 
-      <CatalogClient products={localizeProducts(products, locale)} locale={locale} dict={dict} />
+      <CatalogClient
+        products={localizeProducts(products, locale)}
+        accessories={localizeAccessories(accessories, locale)}
+        locale={locale}
+        dict={dict}
+      />
       <CompareBar locale={locale} dict={dict} />
     </div>
   );

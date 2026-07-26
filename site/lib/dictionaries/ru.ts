@@ -7,7 +7,6 @@ const ru: Dictionary = {
   nav: {
     home: "Главная",
     catalog: "Каталог",
-    accessories: "Шланги",
     about: "О нас",
     production: "Производство",
     contact: "Контакты",
@@ -144,8 +143,8 @@ const ru: Dictionary = {
     title: "Каталог",
     metaTitle: "Каталог кальянов",
     compareMetaTitle: "Сравнение моделей",
-    kicker: "11 моделей · 2 линейки",
-    lede: "Spiral — цельная деревянная спираль на стальной шахте. Wild Collection — компактный формат, полностью в коже.",
+    kicker: "22 позиции · 4 линейки",
+    lede: "Spiral и Wild Collection — кальяны ручной работы. Кожаный шланг и Шланг Змея — фирменные аксессуары того же качества.",
     searchPlaceholder: "Поиск по названию или породе…",
     allLines: "Все линейки",
     sortLabel: "Сортировка",

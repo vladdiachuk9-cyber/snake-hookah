@@ -60,7 +60,7 @@ export function CartDrawer({ locale, dict }: { locale: Locale; dict: Dictionary 
                         <Image src={item.image} alt={item.name} width={72} height={72} style={{ objectFit: "contain", width: "100%", height: "100%" }} />
                       </div>
                       <div className="flex-1 flex flex-col" style={{ gap: 6 }}>
-                        <Link href={`/${locale}/products/${item.slug}`} onClick={close} className="text-sm" style={{ color: "var(--text)" }}>
+                        <Link href={`/${locale}/${item.kind === "accessory" ? "accessories" : "products"}/${item.slug}`} onClick={close} className="text-sm" style={{ color: "var(--text)" }}>
                           {item.name}
                         </Link>
                         <div className="flex items-center justify-between">

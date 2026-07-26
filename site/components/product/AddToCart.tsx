@@ -13,6 +13,8 @@ export function AddToCart({
   priceUah,
   image,
   dict,
+  kind,
+  hideWholesale,
 }: {
   sku: string;
   slug: string;
@@ -21,6 +23,8 @@ export function AddToCart({
   priceUah: number;
   image: string;
   dict: Dictionary;
+  kind?: "accessory";
+  hideWholesale?: boolean;
 }) {
   const [qty, setQty] = useState(1);
   const [wholesaleOpen, setWholesaleOpen] = useState(false);
@@ -52,7 +56,7 @@ export function AddToCart({
         </div>
         <button
           type="button"
-          onClick={() => add({ sku, slug, name, priceUsd, priceUah, image }, qty)}
+          onClick={() => add({ sku, slug, name, priceUsd, priceUah, image, kind }, qty)}
           className="btn btn-primary"
           style={{ flex: 1 }}
         >
@@ -60,11 +64,15 @@ export function AddToCart({
         </button>
       </div>
 
-      <button type="button" onClick={() => setWholesaleOpen(true)} className="btn btn-secondary">
-        {dict.product.requestWholesale}
-      </button>
+      {!hideWholesale && (
+        <button type="button" onClick={() => setWholesaleOpen(true)} className="btn btn-secondary">
+          {dict.product.requestWholesale}
+        </button>
+      )}
 
-      <WholesaleModalPortal productName={name} dict={dict} open={wholesaleOpen} onClose={() => setWholesaleOpen(false)} />
+      {!hideWholesale && (
+        <WholesaleModalPortal productName={name} dict={dict} open={wholesaleOpen} onClose={() => setWholesaleOpen(false)} />
+      )}
     </div>
   );
 }

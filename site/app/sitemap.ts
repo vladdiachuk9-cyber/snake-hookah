@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { products } from "@/lib/data/products";
+import { accessories } from "@/lib/data/accessories";
 
 // Set NEXT_PUBLIC_SITE_URL once the site has a real domain — example.com is
 // a deliberate placeholder (IANA reserved), not a guessed real domain.
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
 
-const STATIC_PATHS = ["", "/catalog", "/about", "/production", "/b2b", "/contact"];
+const STATIC_PATHS = ["", "/catalog", "/accessories", "/about", "/production", "/b2b", "/contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
@@ -24,6 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${BASE_URL}/${locale}/products/${product.slug}`,
         changeFrequency: "weekly",
         priority: 0.8,
+      });
+    }
+    for (const accessory of accessories) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/accessories/${accessory.slug}`,
+        changeFrequency: "weekly",
+        priority: 0.6,
       });
     }
   }

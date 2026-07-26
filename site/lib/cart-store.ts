@@ -11,6 +11,8 @@ export interface CartItem {
   priceUah: number;
   image: string;
   qty: number;
+  /** Absent/"product" = a hookah under /products/:slug. "accessory" = a hose under /accessories/:slug. */
+  kind?: "accessory";
 }
 
 interface CartState {

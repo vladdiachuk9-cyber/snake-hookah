@@ -22,6 +22,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
   const nav = [
     { href: `/${locale}/catalog`, label: dict.nav.catalog, mega: true },
+    { href: `/${locale}/accessories`, label: dict.nav.accessories },
     { href: `/${locale}/about`, label: dict.nav.about },
     { href: `/${locale}/production`, label: dict.nav.production },
     { href: `/${locale}/b2b`, label: "B2B" },

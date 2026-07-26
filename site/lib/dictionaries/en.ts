@@ -7,6 +7,7 @@ const en: Dictionary = {
   nav: {
     home: "Home",
     catalog: "Catalog",
+    accessories: "Hoses",
     about: "About",
     production: "Production",
     contact: "Contact",
@@ -312,6 +313,25 @@ const en: Dictionary = {
     leatherBody: "Genuine, not embossed film. Darkens and develops patina over time instead of flaking.",
     steelTitle: "Steel",
     steelBody: "A stainless Ø 16 mm shaft — the diameter where the pull takes no effort and the smoke has time to cool.",
+  },
+  accessories: {
+    metaTitle: "Snake Hookah Hoses",
+    kicker: "Accessories · 2 lines",
+    title: "Hoses",
+    lede: "Leather Hose — smooth genuine leather, hand-stitched. Snake Hose — the same leather embossed with a snake-scale pattern, the brand's signature visual code.",
+    categoryAll: "All",
+    categoryLeather: "Leather Hose",
+    categorySnake: "Snake Hose",
+    searchPlaceholder: "Search by color…",
+    noResults: "No results. Try a different search or reset the filter.",
+    reset: "Reset",
+    resultsCount: "items",
+    color: "Color",
+    material: "Material",
+    connector: "Ferrule",
+    length: "Length",
+    care: "Care",
+    related: "Other colors",
   },
 };
 

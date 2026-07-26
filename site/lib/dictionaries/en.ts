@@ -55,6 +55,8 @@ const en: Dictionary = {
     popularKicker: "In stock",
     popularTitle: "Popular models",
     popularCta: "Full catalog",
+    accessoriesKicker: "Accessories",
+    accessoriesTitle: "Hoses and bowls",
     aboutKicker: "About the brand",
     aboutTitle: "It all started with how the hose falls",
     aboutBody:

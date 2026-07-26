@@ -6,6 +6,7 @@ import { Hero } from "@/components/home/Hero";
 import { Advantages } from "@/components/home/Advantages";
 import { Categories } from "@/components/home/Categories";
 import { PopularProducts } from "@/components/home/PopularProducts";
+import { AccessoriesTeaser } from "@/components/home/AccessoriesTeaser";
 import { AboutSnippet } from "@/components/home/AboutSnippet";
 import { Production } from "@/components/home/Production";
 import { Materials } from "@/components/home/Materials";
@@ -32,6 +33,7 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
       <Advantages dict={dict} />
       <Categories locale={locale} dict={dict} />
       <PopularProducts locale={locale} dict={dict} />
+      <AccessoriesTeaser locale={locale} dict={dict} />
       <AboutSnippet locale={locale} dict={dict} />
       <Production locale={locale} dict={dict} />
       <Materials dict={dict} />

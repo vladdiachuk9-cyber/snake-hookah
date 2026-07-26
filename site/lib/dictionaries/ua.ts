@@ -52,6 +52,8 @@ const ua = {
     popularKicker: "У наявності",
     popularTitle: "Популярні моделі",
     popularCta: "Весь каталог",
+    accessoriesKicker: "Аксесуари",
+    accessoriesTitle: "Шланги та чаші",
     aboutKicker: "Про бренд",
     aboutTitle: "Все почалося з того, як лягає шланг",
     aboutBody:

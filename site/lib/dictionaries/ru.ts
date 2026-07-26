@@ -55,6 +55,8 @@ const ru: Dictionary = {
     popularKicker: "В наличии",
     popularTitle: "Популярные модели",
     popularCta: "Весь каталог",
+    accessoriesKicker: "Аксессуары",
+    accessoriesTitle: "Шланги и чаши",
     aboutKicker: "О бренде",
     aboutTitle: "Всё началось с того, как ложится шланг",
     aboutBody:

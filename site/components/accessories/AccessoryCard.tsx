@@ -15,7 +15,12 @@ export function AccessoryCard({
   dict: Dictionary;
 }) {
   const image = accessory.images[0];
-  const categoryLabel = accessory.category === "Leather Hose" ? dict.accessories.categoryLeather : dict.accessories.categorySnake;
+  const categoryLabel =
+    accessory.category === "Leather Hose"
+      ? dict.accessories.categoryLeather
+      : accessory.category === "Snake Hose"
+        ? dict.accessories.categorySnake
+        : dict.accessories.categoryBowl;
 
   return (
     <Link href={`/${locale}/accessories/${accessory.slug}`} className="flex flex-col">

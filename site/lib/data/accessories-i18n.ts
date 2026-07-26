@@ -4,12 +4,13 @@ import type { Accessory } from "./accessories";
 interface AccessoryTranslation {
   color: string;
   material: string;
-  connector: string;
   description: string[];
   features: string[];
-  care: string;
   seoTitle: string;
   seoDescription: string;
+  connector?: string;
+  care?: string;
+  bowlType?: string;
 }
 
 const LEATHER_HOSE_EN = {
@@ -80,6 +81,38 @@ const SNAKE_HOSE_RU = {
   care: "Кожу не мочат — достаточно протирать сухой или слегка влажной салфеткой и хранить в сухом месте. При таком уходе шланг надолго сохранит вид и форму.",
 };
 
+const BOWL_EN = {
+  material: "Clay",
+  bowlType: "Classic",
+  description: [
+    "This is a classic clay bowl (a \"turka\"), made from red clay and fired with a marbled milk-firing effect. Clay is the best material for hookah bowls: it conducts heat well, so every layer of the pack heats evenly and the smoke comes out fragrant and full.",
+    "Packing it is simple: take the tobacco out of the pack and fluff it up (cut any large leaves lightly with a knife), lay the tobacco into the bowl in small portions without pressing it down, and leave a 2-4 mm gap between the top of the pack and the foil or heat-management device.",
+    "Then place the coals and light up. We recommend three 22 mm coals to warm it up, then smoking on two. Warm-up time is 4-5 minutes. Enjoy your session!",
+  ],
+  features: [
+    "genuine red clay, fired with a marbled milk-firing effect",
+    "even heat across every layer of the pack",
+    "signature leather band with an embossed SNAKE logo",
+    "a classic shape that suits any packing style",
+  ],
+};
+
+const BOWL_RU = {
+  material: "Глина",
+  bowlType: "Классика",
+  description: [
+    "Это классическая чаша («турка»), выполненная из красных сортов глины и обожжённая с эффектом молочения. Глина — лучший материал для кальянных чаш: она хорошо проводит тепло, поэтому все слои забивки прогреваются равномерно, а дым получается ароматным и насыщенным.",
+    "Забить турку очень просто: достаньте табак из пачки и распушите его (крупные листья можно слегка нарезать ножом), выложите табак в чашу небольшими порциями, не утрамбовывая, и оставьте зазор 2-4 мм от верха забивки до фольги или колодки регулятора жара.",
+    "Далее — кладите угли и раскуривайте кальян. Советуем три кубика (22 мм) для розжига, далее курите на двух. Время прогрева чаши — 4-5 минут. Приятного покура!",
+  ],
+  features: [
+    "натуральная красная глина, обожжённая с эффектом молочения",
+    "равномерный прогрев всех слоёв забивки",
+    "фирменная кожаная лента с тиснёным логотипом SNAKE",
+    "классическая форма — подходит под любой стиль забивки",
+  ],
+};
+
 const accessoryTranslations: Record<string, { en: AccessoryTranslation; ru: AccessoryTranslation }> = {
   "SNK-ACC-LEA-GRN": {
     en: { ...LEATHER_HOSE_EN, color: "Green", seoTitle: "Snake Hookah Leather Hose, Green — buy | Snake Hookah", seoDescription: "Snake Hookah leather hose, green, 150 cm, genuine leather. Soft draw, premium look, fits every Snake Hookah shaft." },
@@ -124,6 +157,18 @@ const accessoryTranslations: Record<string, { en: AccessoryTranslation; ru: Acce
   "SNK-ACC-SNK-RED": {
     en: { ...SNAKE_HOSE_EN, color: "Red", seoTitle: "Snake Hookah Snake Hose, Red — buy | Snake Hookah", seoDescription: "Snake Hookah snake-scale hose, red, 150 cm, genuine leather. A signature accent with the same soft, off-taste-free draw." },
     ru: { ...SNAKE_HOSE_RU, color: "Красный", seoTitle: "Шланг Snake Hookah со змеиным тиснением, красный — купить | Snake Hookah", seoDescription: "Шланг Snake Hookah со змеиным тиснением, красный, 150 см, натуральная кожа. Фирменный акцент для кальяна, мягкая тяга без привкуса." },
+  },
+  "SNK-ACC-BWL-GRN": {
+    en: { ...BOWL_EN, color: "Green", seoTitle: "Snake Hookah Bowl, Green — buy | Snake Hookah", seoDescription: "Classic clay Snake Hookah bowl, green, Ø 7 cm, made in Ukraine. Marbled milk-firing effect, even heat across the pack." },
+    ru: { ...BOWL_RU, color: "Зелёная", seoTitle: "Чаша Snake Hookah, зелёная — купить | Snake Hookah", seoDescription: "Классическая глиняная чаша Snake Hookah, зелёная, Ø 7 см, Украина. Эффект молочения, равномерный прогрев забивки." },
+  },
+  "SNK-ACC-BWL-CGN": {
+    en: { ...BOWL_EN, color: "Ostrich, cognac", seoTitle: "Snake Hookah Bowl, Cognac Ostrich — buy | Snake Hookah", seoDescription: "Classic clay Snake Hookah bowl with an embossed \"ostrich\" cognac leather band, Ø 7 cm, made in Ukraine." },
+    ru: { ...BOWL_RU, color: "Страус, коньячная", seoTitle: "Чаша Snake Hookah, страус коньячная — купить | Snake Hookah", seoDescription: "Классическая глиняная чаша Snake Hookah с тиснёной кожаной лентой «страус» коньячного цвета, Ø 7 см, Украина." },
+  },
+  "SNK-ACC-BWL-PRP": {
+    en: { ...BOWL_EN, color: "Purple", seoTitle: "Snake Hookah Bowl, Purple — buy | Snake Hookah", seoDescription: "Classic clay Snake Hookah bowl, purple, Ø 7 cm, made in Ukraine. Marbled milk-firing effect, even heat across the pack." },
+    ru: { ...BOWL_RU, color: "Фиолетовая", seoTitle: "Чаша Snake Hookah, фиолетовая — купить | Snake Hookah", seoDescription: "Классическая глиняная чаша Snake Hookah, фиолетовая, Ø 7 см, Украина. Эффект молочения, равномерный прогрев забивки." },
   },
 };
 

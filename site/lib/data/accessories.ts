@@ -1,11 +1,12 @@
-// Hose accessory line — sold separately from the 11 hookahs. Source photos
+// Accessory lines — sold separately from the 11 hookahs. Source photos
 // live in ../../../каталог/<Folder>/, processed via
-// scripts/process-accessory-images.mjs. Prices confirmed by the user
-// (2026-07-26): Leather Hose $150, Snake Hose $200; UAH uses the same ~42
-// UAH/USD rate already used consistently across products.ts.
+// scripts/process-accessory-images.mjs. Prices confirmed by the user in
+// chat: Leather Hose $150, Snake Hose $200 (2026-07-26), Bowl $8
+// (2026-07-27); UAH uses the same ~42 UAH/USD rate already used
+// consistently across products.ts.
 import type { ProductImage } from "./products";
 
-export type AccessoryCategory = "Leather Hose" | "Snake Hose";
+export type AccessoryCategory = "Leather Hose" | "Snake Hose" | "Bowl";
 
 export interface Accessory {
   sku: string;
@@ -15,15 +16,21 @@ export interface Accessory {
   color: string;
   priceUsd: number;
   priceUah: number;
-  lengthCm: number;
   material: string;
-  connector: string;
   description: string[];
   features: string[];
-  care: string;
   images: ProductImage[];
   seoTitle: string;
   seoDescription: string;
+  // Hose-only fields.
+  lengthCm?: number;
+  connector?: string;
+  care?: string;
+  // Bowl-only fields.
+  diameterCm?: number;
+  heightCm?: number;
+  bowlType?: string;
+  countryOfOrigin?: string;
 }
 
 const LEATHER_HOSE_SHARED = {
@@ -45,6 +52,28 @@ const LEATHER_HOSE_SHARED = {
     "ефектний акцент, що вирізняє ваш кальян",
   ],
   care: "Шкіру не мочать — достатньо протирати сухою або трохи вологою серветкою та зберігати в сухому місці. За такого підходу шланг надовго збереже вигляд і форму.",
+};
+
+const BOWL_SHARED = {
+  category: "Bowl" as const,
+  priceUsd: 8,
+  priceUah: 336,
+  diameterCm: 7,
+  heightCm: 6.8,
+  material: "Глина",
+  bowlType: "Класика",
+  countryOfOrigin: "Україна",
+  description: [
+    "Це класична чаша («турка»), виготовлена з червоних сортів глини та обпалена з ефектом молочення. Глина — найкращий матеріал для кальянних чаш: вона добре проводить тепло, тож усі шари забивки прогріваються рівномірно, а дим виходить ароматним і насиченим.",
+    "Забити турку дуже просто: дістаньте тютюн із пачки та розпушіть його (великі листки можна злегка нарізати ножем), викладіть тютюн у чашу невеликими порціями, не утрамбовуючи, і залиште зазор 2–4 мм від верху забивки до фольги чи колодки регулятора жару.",
+    "Далі — кладіть вугілля і розкурюйте кальян. Радимо три кубики (22 мм) для розпалу, а далі курити на двох. Час прогріву чаші — 4–5 хвилин. Приємного покуру!",
+  ],
+  features: [
+    "натуральна червона глина, обпалена з ефектом молочення",
+    "рівномірний прогрів усіх шарів забивки",
+    "фірмова шкіряна стрічка з тисненим лого SNAKE",
+    "класична форма — підходить під будь-який стиль забивки",
+  ],
 };
 
 const SNAKE_HOSE_SHARED = {
@@ -236,6 +265,39 @@ export const accessories: Accessory[] = [
     seoTitle: "Шланг Snake Hookah зі зміїним тисненням, червоний — купити | Snake Hookah",
     seoDescription:
       "Шланг Snake Hookah зі зміїним тисненням, червоний, 150 см, натуральна шкіра. Фірмовий акцент для кальяна, м'яка тяга без присмаку.",
+  },
+  {
+    ...BOWL_SHARED,
+    sku: "SNK-ACC-BWL-GRN",
+    slug: "snake-hookah-bowl-green",
+    name: "Snake Hookah Bowl Green",
+    color: "Зелена",
+    images: [img("snake-hookah-bowl-green", 1, 1200, 1800, "Snake Hookah Bowl Green — загальний вигляд")],
+    seoTitle: "Чаша Snake Hookah, зелена — купити | Snake Hookah",
+    seoDescription:
+      "Класична глиняна чаша Snake Hookah, зелена, Ø 7 см, Україна. Ефект молочення, рівномірний прогрів забивки.",
+  },
+  {
+    ...BOWL_SHARED,
+    sku: "SNK-ACC-BWL-CGN",
+    slug: "snake-hookah-bowl-cognac-ostrich",
+    name: "Snake Hookah Bowl Cognac Ostrich",
+    color: "Страус, коньячна",
+    images: [img("snake-hookah-bowl-cognac-ostrich", 1, 1200, 1800, "Snake Hookah Bowl Cognac Ostrich — загальний вигляд")],
+    seoTitle: "Чаша Snake Hookah, страус коньячна — купити | Snake Hookah",
+    seoDescription:
+      "Класична глиняна чаша Snake Hookah, тиснена шкіряна стрічка «страус» коньячного кольору, Ø 7 см, Україна.",
+  },
+  {
+    ...BOWL_SHARED,
+    sku: "SNK-ACC-BWL-PRP",
+    slug: "snake-hookah-bowl-purple",
+    name: "Snake Hookah Bowl Purple",
+    color: "Фіолетова",
+    images: [img("snake-hookah-bowl-purple", 1, 1200, 1800, "Snake Hookah Bowl Purple — загальний вигляд")],
+    seoTitle: "Чаша Snake Hookah, фіолетова — купити | Snake Hookah",
+    seoDescription:
+      "Класична глиняна чаша Snake Hookah, фіолетова, Ø 7 см, Україна. Ефект молочення, рівномірний прогрів забивки.",
   },
 ];
 

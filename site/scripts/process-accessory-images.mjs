@@ -65,6 +65,11 @@ const jobs = [
   { dir: "Шланг Змія Червоний", src: "Photo-5.JPEG", out: "images/accessories/snake-hookah-snake-hose-red/1.webp", width: 1200 },
   { dir: "Шланг Змія Червоний", src: "Photo-27.JPEG", out: "images/accessories/snake-hookah-snake-hose-red/2.webp", width: 1200 },
   { dir: "Шланг Змія Червоний", src: "Photo-16.JPEG", out: "images/accessories/snake-hookah-snake-hose-red/3.webp", width: 1200 },
+
+  // Bowls — classic clay "turka" bowls, one verified photo per color band.
+  { dir: "Чаша Зелена", src: "IMG_1894.JPG", out: "images/accessories/snake-hookah-bowl-green/1.webp", width: 1200 },
+  { dir: "Чаша Страус Коньячна", src: "IMG_1893.JPG", out: "images/accessories/snake-hookah-bowl-cognac-ostrich/1.webp", width: 1200 },
+  { dir: "Чаша Фіолетова", src: "IMG_1892.JPG", out: "images/accessories/snake-hookah-bowl-purple/1.webp", width: 1200 },
 ];
 
 for (const job of jobs) {

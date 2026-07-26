@@ -47,7 +47,12 @@ export default async function AccessoryPage(props: PageProps<"/[locale]/accessor
 
   const dict = await getDictionary(locale);
   const related = localizeAccessories(getRelatedAccessories(raw), locale);
-  const categoryLabel = accessory.category === "Leather Hose" ? dict.accessories.categoryLeather : dict.accessories.categorySnake;
+  const categoryLabel =
+    accessory.category === "Leather Hose"
+      ? dict.accessories.categoryLeather
+      : accessory.category === "Snake Hose"
+        ? dict.accessories.categorySnake
+        : dict.accessories.categoryBowl;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -65,13 +70,24 @@ export default async function AccessoryPage(props: PageProps<"/[locale]/accessor
     },
   };
 
-  const specRows: [string, string][] = [
-    [dict.product.sku, accessory.sku],
-    [dict.accessories.color, accessory.color],
-    [dict.accessories.length, `${accessory.lengthCm} ${dict.product.unitCm}`],
-    [dict.accessories.material, accessory.material],
-    [dict.accessories.connector, accessory.connector],
-  ];
+  const specRows: [string, string][] =
+    accessory.category === "Bowl"
+      ? [
+          [dict.product.sku, accessory.sku],
+          [dict.accessories.color, accessory.color],
+          [dict.accessories.diameter, `${accessory.diameterCm} ${dict.product.unitCm}`],
+          [dict.product.height, `${accessory.heightCm} ${dict.product.unitCm}`],
+          [dict.accessories.material, accessory.material],
+          [dict.accessories.bowlType, accessory.bowlType ?? ""],
+          [dict.product.countryOfOrigin, accessory.countryOfOrigin ?? ""],
+        ]
+      : [
+          [dict.product.sku, accessory.sku],
+          [dict.accessories.color, accessory.color],
+          [dict.accessories.length, `${accessory.lengthCm} ${dict.product.unitCm}`],
+          [dict.accessories.material, accessory.material],
+          [dict.accessories.connector, accessory.connector ?? ""],
+        ];
 
   return (
     <div className="wrap" style={{ paddingBlock: "var(--s-7)" }}>
@@ -129,8 +145,12 @@ export default async function AccessoryPage(props: PageProps<"/[locale]/accessor
             ))}
           </ul>
 
-          <h2 style={{ fontSize: "var(--t-h2)", marginTop: "var(--s-7)", marginBottom: "var(--s-4)" }}>{dict.accessories.care}</h2>
-          <p style={{ color: "var(--text-body)" }}>{accessory.care}</p>
+          {accessory.care && (
+            <>
+              <h2 style={{ fontSize: "var(--t-h2)", marginTop: "var(--s-7)", marginBottom: "var(--s-4)" }}>{dict.accessories.care}</h2>
+              <p style={{ color: "var(--text-body)" }}>{accessory.care}</p>
+            </>
+          )}
         </Reveal>
 
         <Reveal delay={0.08}>

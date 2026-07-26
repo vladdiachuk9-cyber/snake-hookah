@@ -33,7 +33,7 @@ export function CatalogClient({
     const q = query.trim().toLowerCase();
 
     const matchedProducts: CatalogItem[] =
-      category === "Leather Hose" || category === "Snake Hose"
+      category === "Leather Hose" || category === "Snake Hose" || category === "Bowl"
         ? []
         : products
             .filter((p) => category === "all" || p.line === category)
@@ -68,11 +68,12 @@ export function CatalogClient({
 
   const hasFilters = query.trim().length > 0 || category !== "all";
 
-  const categories: Category[] = ["all", "Spiral", "Wild Collection", "Leather Hose", "Snake Hose"];
+  const categories: Category[] = ["all", "Spiral", "Wild Collection", "Leather Hose", "Snake Hose", "Bowl"];
   const categoryLabel = (c: Category) => {
     if (c === "all") return dict.catalog.allLines;
     if (c === "Leather Hose") return dict.accessories.categoryLeather;
     if (c === "Snake Hose") return dict.accessories.categorySnake;
+    if (c === "Bowl") return dict.accessories.categoryBowl;
     return c;
   };
 

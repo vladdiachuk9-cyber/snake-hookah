@@ -7,7 +7,7 @@ import type { Dictionary } from "@/lib/dictionaries/ua";
 import type { Product } from "@/lib/data/products";
 import { useCompareStore } from "@/lib/compare-store";
 import { useHydratedStore } from "@/lib/use-hydrated-store";
-import { formatUah } from "@/lib/format";
+import { formatUah, formatUsd } from "@/lib/format";
 
 const EMPTY: string[] = [];
 
@@ -68,8 +68,9 @@ export function CompareClient({ products, locale, dict }: { products: Product[];
                   <Link href={`/${locale}/products/${p.slug}`} style={{ fontSize: "var(--t-sm)", color: "var(--text)", fontWeight: 600 }}>
                     {p.name.replace("Snake Hookah ", "")}
                   </Link>
-                  <div style={{ fontFamily: "var(--font-num)", color: "var(--gold)", fontSize: "var(--t-sm)", marginTop: 4 }}>
-                    {formatUah(p.priceUah)}
+                  <div style={{ fontFamily: "var(--font-num)", marginTop: 4 }}>
+                    <span style={{ color: "var(--gold)", fontSize: "var(--t-sm)" }}>{formatUah(p.priceUah)}</span>{" "}
+                    <span style={{ color: "var(--text-mute)", fontSize: "var(--t-xs)" }}>{formatUsd(p.priceUsd)}</span>
                   </div>
                   <button
                     type="button"

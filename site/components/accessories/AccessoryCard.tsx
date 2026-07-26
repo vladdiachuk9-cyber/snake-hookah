@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Accessory } from "@/lib/data/accessories";
 import type { Dictionary } from "@/lib/dictionaries/ua";
-import { formatUah } from "@/lib/format";
+import { formatUah, formatUsd } from "@/lib/format";
 
 export function AccessoryCard({
   accessory,
@@ -37,8 +37,9 @@ export function AccessoryCard({
         <span className="badge" style={{ width: "fit-content" }}>{categoryLabel}</span>
         <h3 style={{ fontSize: "var(--t-body)", fontWeight: 600 }}>{accessory.color}</h3>
         <div className="flex items-center justify-between">
-          <span style={{ fontFamily: "var(--font-num)", color: "var(--gold)", fontSize: "var(--t-sm)" }}>
-            {formatUah(accessory.priceUah)}
+          <span style={{ fontFamily: "var(--font-num)" }}>
+            <span style={{ color: "var(--gold)", fontSize: "var(--t-sm)" }}>{formatUah(accessory.priceUah)}</span>{" "}
+            <span style={{ color: "var(--text-mute)", fontSize: "var(--t-xs)" }}>{formatUsd(accessory.priceUsd)}</span>
           </span>
           <span style={{ fontSize: "var(--t-xs)", color: "var(--text-mute)" }}>{dict.product.viewProduct} →</span>
         </div>

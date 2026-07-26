@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import { useCartStore, cartTotals } from "@/lib/cart-store";
 import { useHydratedCartItems } from "@/lib/use-cart-items";
-import { formatUah } from "@/lib/format";
+import { formatUah, formatUsd } from "@/lib/format";
 
 export function CartDrawer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const isOpen = useCartStore((s) => s.isOpen);
@@ -83,8 +83,10 @@ export function CartDrawer({ locale, dict }: { locale: Locale; dict: Dictionary 
                               +
                             </button>
                           </div>
-                          <span style={{ fontFamily: "var(--font-num)", color: "var(--gold)", fontSize: "var(--t-sm)" }}>
-                            {formatUah(item.priceUah * item.qty)}
+                          <span style={{ fontFamily: "var(--font-num)", textAlign: "right" }}>
+                            <span style={{ color: "var(--gold)", fontSize: "var(--t-sm)" }}>{formatUah(item.priceUah * item.qty)}</span>
+                            <br />
+                            <span style={{ color: "var(--text-mute)", fontSize: "var(--t-xs)" }}>{formatUsd(item.priceUsd * item.qty)}</span>
                           </span>
                         </div>
                         <button
@@ -106,7 +108,10 @@ export function CartDrawer({ locale, dict }: { locale: Locale; dict: Dictionary 
               <div style={{ padding: "var(--s-5)", borderTop: "1px solid var(--line)" }}>
                 <div className="flex items-center justify-between" style={{ marginBottom: "var(--s-4)" }}>
                   <span style={{ color: "var(--text-body)" }}>{dict.cart.subtotal}</span>
-                  <span className="price" style={{ fontSize: 22 }}>{formatUah(totals.uah)}</span>
+                  <span className="price" style={{ fontSize: 22 }}>
+                    {formatUah(totals.uah)}
+                    <small>{formatUsd(totals.usd)}</small>
+                  </span>
                 </div>
                 <Link href={`/${locale}/order`} onClick={close} className="btn btn-primary" style={{ width: "100%" }}>
                   {dict.cart.checkout}

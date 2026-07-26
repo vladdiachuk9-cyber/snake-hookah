@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Product } from "@/lib/data/products";
-import { formatUah } from "@/lib/format";
+import { formatUah, formatUsd } from "@/lib/format";
 import { useWishlistStore } from "@/lib/wishlist-store";
 import { useCompareStore, MAX_COMPARE } from "@/lib/compare-store";
 import { useHydratedStore } from "@/lib/use-hydrated-store";
@@ -72,8 +72,9 @@ export function ProductCard({
           <span className="badge" style={{ width: "fit-content" }}>{product.line}</span>
           <h3 style={{ fontSize: "var(--t-body)", fontWeight: 600 }}>{product.name.replace("Snake Hookah ", "")}</h3>
           <div className="flex items-center justify-between">
-            <span style={{ fontFamily: "var(--font-num)", color: "var(--gold)", fontSize: "var(--t-sm)" }}>
-              {formatUah(product.priceUah)}
+            <span style={{ fontFamily: "var(--font-num)" }}>
+              <span style={{ color: "var(--gold)", fontSize: "var(--t-sm)" }}>{formatUah(product.priceUah)}</span>{" "}
+              <span style={{ color: "var(--text-mute)", fontSize: "var(--t-xs)" }}>{formatUsd(product.priceUsd)}</span>
             </span>
             <span style={{ fontSize: "var(--t-xs)", color: "var(--text-mute)" }}>{viewLabel} →</span>
           </div>

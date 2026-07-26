@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import { useCartStore, cartTotals } from "@/lib/cart-store";
 import { useHydratedCartItems } from "@/lib/use-cart-items";
-import { formatUah } from "@/lib/format";
+import { formatUah, formatUsd } from "@/lib/format";
 import { Honeypot } from "@/components/ui/Honeypot";
 import { HONEYPOT_FIELD } from "@/lib/honeypot";
 
@@ -85,17 +85,24 @@ export function OrderClient({ locale, dict }: { locale: Locale; dict: Dictionary
                 </div>
                 <div className="flex-1">
                   <p style={{ fontSize: "var(--t-sm)", color: "var(--text)" }}>{item.name}</p>
-                  <p style={{ fontSize: "var(--t-xs)", color: "var(--text-mute)" }}>{item.qty} × {formatUah(item.priceUah)}</p>
+                  <p style={{ fontSize: "var(--t-xs)", color: "var(--text-mute)" }}>
+                    {item.qty} × {formatUah(item.priceUah)} ({formatUsd(item.priceUsd)})
+                  </p>
                 </div>
-                <span style={{ fontFamily: "var(--font-num)", color: "var(--gold)", fontSize: "var(--t-sm)" }}>
-                  {formatUah(item.priceUah * item.qty)}
+                <span style={{ fontFamily: "var(--font-num)", textAlign: "right" }}>
+                  <span style={{ color: "var(--gold)", fontSize: "var(--t-sm)" }}>{formatUah(item.priceUah * item.qty)}</span>
+                  <br />
+                  <span style={{ color: "var(--text-mute)", fontSize: "var(--t-xs)" }}>{formatUsd(item.priceUsd * item.qty)}</span>
                 </span>
               </li>
             ))}
           </ul>
           <div className="flex items-center justify-between" style={{ marginTop: "var(--s-5)", paddingTop: "var(--s-4)", borderTop: "1px solid var(--line)" }}>
             <span style={{ color: "var(--text-body)" }}>{dict.cart.subtotal}</span>
-            <span className="price" style={{ fontSize: 22 }}>{formatUah(totals.uah)}</span>
+            <span className="price" style={{ fontSize: 22 }}>
+              {formatUah(totals.uah)}
+              <small>{formatUsd(totals.usd)}</small>
+            </span>
           </div>
         </div>
 

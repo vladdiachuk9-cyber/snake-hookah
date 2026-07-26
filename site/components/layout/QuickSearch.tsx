@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries/ua";
 import { products } from "@/lib/data/products";
 import { localizeProducts } from "@/lib/data/products-i18n";
-import { formatUah } from "@/lib/format";
+import { formatUah, formatUsd } from "@/lib/format";
 
 export function QuickSearch({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);
@@ -86,7 +86,11 @@ export function QuickSearch({ locale, dict }: { locale: Locale; dict: Dictionary
                           )}
                         </div>
                         <span style={{ fontSize: "var(--t-sm)", color: "var(--text)", flex: 1 }}>{p.name.replace("Snake Hookah ", "")}</span>
-                        <span style={{ fontSize: "var(--t-xs)", color: "var(--gold)" }}>{formatUah(p.priceUah)}</span>
+                        <span style={{ fontSize: "var(--t-xs)", color: "var(--gold)", textAlign: "right", whiteSpace: "nowrap" }}>
+                          {formatUah(p.priceUah)}
+                          <br />
+                          <span style={{ color: "var(--text-mute)" }}>{formatUsd(p.priceUsd)}</span>
+                        </span>
                       </Link>
                     </li>
                   ))}
